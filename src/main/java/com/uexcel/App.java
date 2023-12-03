@@ -2,7 +2,7 @@ package com.uexcel;
 
 import org.hibernate.jpa.HibernatePersistenceProvider;
 
-import com.uexcel.entity.Product;
+import com.uexcel.entity.Employee;
 import com.uexcel.persistence.CustomPersistenceUnitInfo;
 
 import jakarta.persistence.EntityManager;
@@ -28,7 +28,15 @@ public class App {
 
         try {
             entityManager.getTransaction().begin();
-            entityManager.persist(new Product(4L, "Chocolate"));
+            // entityManager.persist(new Employee(2L, "Jide", "")); //Creating new object
+
+            // Employee emp = entityManager.find(Employee.class, 1);
+            // emp.setAddress("1st Ave,F Close House 4, Festac Town"); //update up
+            // System.out.println(emp);
+
+            entityManager.merge(new Employee(2L, "Jide", "23 Owo, Lagos-Ibadan Express way"));
+            // update - going merge the new object with its record in the date base.
+
             entityManager.getTransaction().commit();
         } catch (Exception e) {
 
